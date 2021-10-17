@@ -90,9 +90,9 @@ for i = 1:m
     y_plus = zeros(num_labels, 1);
     y_plus(y(i)) = 1;
     delta_3 = a3(i, :)' - y_plus;
-    % delta_3 (10*1ά)
+    % delta_3 (10*1 dimension)
     delta_2 = (Theta2(:,2:end)' * delta_3) .* sigmoidGradient(z2(i, :)');  %Theta2 (10*26)
-    % delta_2 (25*1ά)
+    % delta_2 (25*1 dimension)
     % a2(i,:) 1*26
     % X_plus(i,:) 1*401
     Delta_2 = Delta_2 + delta_3 * a2(i, :);
