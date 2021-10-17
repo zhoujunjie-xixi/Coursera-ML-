@@ -90,16 +90,16 @@ for i = 1:m
     y_plus = zeros(num_labels, 1);
     y_plus(y(i)) = 1;
     delta_3 = a3(i, :)' - y_plus;
-    % delta_3 (10¡Á1Î¬)
-    delta_2 = (Theta2(:,2:end)' * delta_3) .* sigmoidGradient(z2(i, :)');  %Theta2 (10¡Á26)
-    % delta_2 (25¡Á1Î¬)
-    % a2(i,:) 1¡Á26
-    % X_plus(i,:) 1¡Á401
+    % delta_3 (10*1Î¬)
+    delta_2 = (Theta2(:,2:end)' * delta_3) .* sigmoidGradient(z2(i, :)');  %Theta2 (10*26)
+    % delta_2 (25*1Î¬)
+    % a2(i,:) 1*26
+    % X_plus(i,:) 1*401
     Delta_2 = Delta_2 + delta_3 * a2(i, :);
     Delta_1 = Delta_1 + delta_2 * X_plus(i, :);
 end
-%Theta1 Delta_1 25¡Á401
-%Theta2 Delta_2 10¡Á26
+%Theta1 Delta_1 25*401
+%Theta2 Delta_2 10*26
 
 Theta1_grad = Delta_1 ./ m;
 Theta2_grad = Delta_2 ./ m;
