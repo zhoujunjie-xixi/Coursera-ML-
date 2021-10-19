@@ -23,6 +23,27 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+value = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+
+minC = 0;
+minSigma = 0;
+% 最小值设为交叉验证集的用例数
+minError = size(Xval,1);
+for i = 1:8
+    for j = 1:8
+        model= svmTrain(X, y, value(i), @(x1, x2) gaussianKernel(x1, x2, value(j)));
+        predictions = svmPredict(model,Xval);
+        error = mean(double(predictions ~= yval));
+        if minError > error
+            minError = error;
+            minC = value(i);
+            minSigma = value(j);
+        end
+    end
+end
+
+C = minC;
+sigma = minSigma;
 
 
 
