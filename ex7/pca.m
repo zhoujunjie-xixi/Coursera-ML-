@@ -21,6 +21,11 @@ S = zeros(n);
 %
 
 
+% Ð­·½²î¾ØÕó
+Sigma = 1 / m * X' * X;
+
+% svd
+[U,S,V] = svd(Sigma);
 
 
 

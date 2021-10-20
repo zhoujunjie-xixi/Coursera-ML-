@@ -22,6 +22,18 @@ idx = zeros(size(X,1), 1);
 %
 
 
+for i = 1 : size(X,1)
+    minError = sum((X(i,:) - centroids(1,:)).^2);
+    minIdx = 1;
+    for c = 2 : K
+        error = sum((X(i,:) - centroids(c,:)).^2) ;
+        if error < minError
+            minError = error;
+            minIdx = c;
+        end
+    idx(i) = minIdx;
+    end
+end
 
 
 

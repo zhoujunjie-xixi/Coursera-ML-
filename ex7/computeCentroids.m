@@ -27,6 +27,16 @@ centroids = zeros(K, n);
 %
 
 
+% 向量化代码
+for i = 1 : K
+    % 找到第i个中心所包含的点的个数
+    s = sum(idx == i);
+    if (s ~= 0)
+        centroids(i,:) = mean( X(find(idx == i),:) );
+    else
+        centroids(i,:) = zeros(1,n);
+    end
+end
 
 
 
