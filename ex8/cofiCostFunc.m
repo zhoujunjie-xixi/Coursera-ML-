@@ -40,12 +40,22 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+% 计算代价函数时，只计算有评分的部分，故通过点乘R来得到有数据部分的值
+J = 1 / 2 * sum(sum(( (X * Theta').*R - Y.*R).^2));
+% 正则化J
+J = J + lambda / 2 * sum(sum(Theta.^2))  + lambda / 2 * sum(sum(X.^2));
+
+
+% 向量化代码计算梯度
+X_grad = ((X * Theta').* R - Y.*R) * Theta;
+Theta_grad = ((X * Theta').*R - Y.*R)' * X;
 
 
 
 
-
-
+% 正则化梯度
+X_grad =X_grad + lambda * X;
+Theta_grad =Theta_grad + lambda * Theta;
 
 
 

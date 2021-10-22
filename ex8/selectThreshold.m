@@ -24,6 +24,22 @@ for epsilon = min(pval):stepsize:max(pval)
     %       of 0's and 1's of the outlier predictions
 
 
+	% 自己的预测结果
+    mcv = size(pval ,1);
+    cvPredictions = zeros(mcv,1);
+    cvPredictions = (pval < epsilon);
+    
+    % 计算TP，FP，FN,使用按位与操作
+    tp = sum((cvPredictions == 1) & (yval == 1));
+    fp = sum((cvPredictions == 1) & (yval == 0));
+    fn = sum((cvPredictions == 0) & (yval == 1));
+
+    % 计算查准率和查全率
+    prec = tp / (tp + fp);
+    rec = tp / (tp + fn);
+
+
+    F1 = 2 * prec * rec / (prec + rec);
 
 
 
